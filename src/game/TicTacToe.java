@@ -127,7 +127,6 @@ public class TicTacToe extends PApplet {
         }
         turno1(turnSign);
         turno2(turnSign);
-        turno3(turnSign);
         turno4(turnSign);
         turno5(turnSign);
         turno6(turnSign);
