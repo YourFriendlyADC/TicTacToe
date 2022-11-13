@@ -161,10 +161,10 @@ public class TicTacToe extends PApplet {
         if (c3) {
             drawO(395, 95);
             ellipse(562, 182, 80, 80);
-        }    
-}
+        }
+    }
 
-void drawX(int kx1, int ky1, int kx2, int ky2, int lx1, int ly1, int lx2, int ly2) {
+    void drawX(int kx1, int ky1, int kx2, int ky2, int lx1, int ly1, int lx2, int ly2) {
         stroke(250, 40, 40);
         strokeWeight(7);
         line(kx1, ky1, kx2, ky2);
@@ -207,10 +207,6 @@ void drawX(int kx1, int ky1, int kx2, int ky2, int lx1, int ly1, int lx2, int ly
                 }
             }
         }
-    }
-
-    void turno3(String turnSign) {
-    
     }
 
     void turno4(String turnSign) {
