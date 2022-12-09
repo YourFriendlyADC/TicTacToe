@@ -1,10 +1,10 @@
 PFont font;
 PImage settings, noVol, vol;
-String actualSign = "X";
+String actualSign = "X", language = "EN", restartText, settingsText, themeText, lgText, exitText, backText;
 boolean c1 = false, c2 = false, c3 = false, c4 = false, c5 = false, c6 = false, c7 = false, c8 = false, c9 = false;
 boolean turn1 = true, turn2 = false, turn3 = false, turn4 = false, turn5 = false, turn6 = false, turn7 = false, turn8 = false, turn9 = false;
 boolean game = true, volume = true, themeBoard = false, lgBoard = false, signX = true, signO = false;
-int i = 0;
+int i = 0, restartX, settingsX, themeX, lgX, exitX, backX;
     
 void setup() {
   size(650, 500);
@@ -19,6 +19,35 @@ void setup() {
 
 void draw() {
   background(254, 250, 224);
+  if (language == "EN") {
+    restartText = "Restart";
+    settingsText = "Settings";
+    themeText = "Theme";
+    lgText = "Language";
+    exitText = "Exit";
+    backText = "Back";
+  } else if (language == "ES") {
+    restartText = "Reiniciar";
+    settingsText = "Ajustes";
+    themeText = "Tema";
+    lgText = "Idioma";
+    exitText = "Salir";
+    backText = "Atrás";
+  } else if (language == "IT") {
+    restartText = "Ricominciare";
+    settingsText = "Impostazioni";
+    themeText = "Tema";
+    lgText = "Lingua";
+    exitText = "Uscita";
+    backText = "Indietro";
+  } else if (language == "FR") {
+    restartText = "Recommencer";
+    settingsText = "Paramètres";
+    themeText = "Thème";
+    lgText = "Langue";
+    exitText = "Sortie";
+    backText = "Revenir";
+  }
   if (game) {
     squaresDesign();
     board();
@@ -34,44 +63,44 @@ void squaresDesign() {
   rect(25, 25, 450, 450, 15, 15, 15, 15);
   // Cuadros
   if ((mouseX > 25) && (mouseX < 170) && (mouseY > 25) && (mouseY < 170)) { // Cuadros
+    cursor(HAND);
+    fill(100, 255, 100);
+    strokeWeight(0);
+    rect(25, 25, 145, 145, 15, 0, 0, 0);
+    if (mousePressed) {
+      c1 = true;
+    }
+  } else if ((mouseX > 170) && (mouseX < 325) && (mouseY > 25) && (mouseY < 170)) { // Cuadro 2
+      cursor(HAND);
+      fill(100, 255, 100);
+      strokeWeight(0);
+      rect(170, 25, 155, 145);
+      if (mousePressed) {
+        c2 = true;
+      }
+  } else if ((mouseX > 325) && (mouseX < 475) && (mouseY > 25) && (mouseY < 170)) { // Cuadro 3
+      cursor(HAND);
+      fill(100, 255, 100);
+      strokeWeight(0);
+      rect(325, 25, 150, 145, 0, 15, 0, 0);
+      if (mousePressed) {
+        c3 = true;
+      }
+  } else if ((mouseX > 25) && (mouseX < 170) && (mouseY > 170) && (mouseY < 325)) { // Cuadro 4
+      cursor(HAND);
+      fill(100, 255, 100);
+      strokeWeight(0);
+      rect(25, 170, 145, 155);
+      if (mousePressed) {
+        c4 = true;
+      }
+  } else if ((mouseX > 170) && (mouseX < 325) && (mouseY > 170) && (mouseY < 325)) { // Cuadro 5
   cursor(HAND);
   fill(100, 255, 100);
-            strokeWeight(0);
-            rect(25, 25, 145, 145, 15, 0, 0, 0);
-            if (mousePressed) {
-                c1 = true;
-            }
-        } else if ((mouseX > 170) && (mouseX < 325) && (mouseY > 25) && (mouseY < 170)) { // Cuadro 2
-            cursor(HAND);
-            fill(100, 255, 100);
-            strokeWeight(0);
-            rect(170, 25, 155, 145);
-            if (mousePressed) {
-                c2 = true;
-            }
-        } else if ((mouseX > 325) && (mouseX < 475) && (mouseY > 25) && (mouseY < 170)) { // Cuadro 3
-            cursor(HAND);
-            fill(100, 255, 100);
-            strokeWeight(0);
-            rect(325, 25, 150, 145, 0, 15, 0, 0);
-            if (mousePressed) {
-                c3 = true;
-            }
-        } else if ((mouseX > 25) && (mouseX < 170) && (mouseY > 170) && (mouseY < 325)) { // Cuadro 4
-            cursor(HAND);
-            fill(100, 255, 100);
-            strokeWeight(0);
-            rect(25, 170, 145, 155);
-            if (mousePressed) {
-                c4 = true;
-            }
-        } else if ((mouseX > 170) && (mouseX < 325) && (mouseY > 170) && (mouseY < 325)) { // Cuadro 5
-            cursor(HAND);
-            fill(100, 255, 100);
-            strokeWeight(0);
-            rect(170, 170, 155, 155);
-            if (mousePressed) {
-                c5 = true;
+  strokeWeight(0);
+  rect(170, 170, 155, 155);
+  if (mousePressed) {
+    c5 = true;
             }
         } else if ((mouseX > 325) && (mouseX < 475) && (mouseY > 170) && (mouseY < 325)) { // Cuadro 6
             cursor(HAND);
@@ -145,10 +174,24 @@ void squaresDesign() {
         fill(0);
         //text("Winner", 530, 95, 70, 30);
         fill(221, 161, 94);
-        rect(525, 365, 80, 35, 15, 15, 15, 15);
+        rect(500, 365, 130, 35, 15, 15, 15, 15);
         fill(0);
         textSize(16);
-        text("Restart", 536, 377, 80, 30);
+        switch (restartText) {
+          case "Reiniciar":
+            restartX = 532;
+            break;
+          case "Restart":
+            restartX = 535;
+            break;
+          case "Ricominciare":
+            restartX = 510;
+            break;
+          case "Recommencer":
+            restartX = 508;
+            break;
+        }
+        text(restartText, restartX, 377, 120, 30);
         // Setting Button
         fill(221, 161, 94);
         stroke(0);
@@ -194,7 +237,21 @@ void squaresDesign() {
         fill(0);
         strokeWeight(3);
         textSize(25);
-        text("Settings", width / 2 - 52, 30, 120, 40);
+        switch (settingsText) {
+          case "Settings":
+            settingsX = width / 2 - 52;
+            break;
+          case "Ajustes":
+            settingsX = width / 2 - 46;
+            break;
+          case "Impostazioni":
+            settingsX = width / 2 - 85;
+            break;
+          case "Paramètres":
+            settingsX = width / 2 - 72;
+            break;
+        }
+        text(settingsText, settingsX, 30, 180, 40);
         fill(221, 161, 94);
         ellipse(width / 2, 320, 50, 50);
         if (volume) {
@@ -208,9 +265,39 @@ void squaresDesign() {
         // Texts
         fill(0);
         textSize(20);
-        text("Theme", width / 2 - 35, 115, 100, 40);
-        text("Language", width / 2 - 48, 175, 120, 40);
-        text("Exit", width / 2 - 20, 235, 70, 40);
+        switch (themeText) {
+          case "Theme":
+          case "Thème":
+            themeX = width / 2 - 35;
+            break;
+          case "Tema":
+            themeX = width / 2 - 28;
+            break;
+        }
+        text(themeText, themeX, 115, 100, 40);
+        switch (lgText) {
+          case "Language":        
+            lgX = width / 2 - 48;
+            break;
+          case "Lingua":
+          case "Idioma":
+          case "Langue":
+            lgX = width / 2 - 35;
+            break;
+        }
+        text(lgText, lgX, 175, 120, 40);
+        switch (exitText) {
+          case "Exit":
+          exitX = width / 2 - 16;
+          case "Salir":
+            exitX = width / 2 - 24;
+            break;
+          case "Uscita":
+          case "Sortie":
+            exitX = width / 2 - 30;
+            break;
+        }
+        text(exitText, exitX, 235, 70, 40);
         textSize(16);
         text("Created by: YourFriendlyADC", 220, 480, 420, 30);
         // Theme
@@ -228,13 +315,6 @@ void squaresDesign() {
             rect(width / 2 + 93, 105, 14, 35);
             fill(166, 198, 146);
             rect(width / 2 + 107, 105, 13, 35, 0, 10, 10, 0);
-            // Theme 2
-//            fill(229);
-//            rect(width/2 + 120, 100, 13, 45, 10, 0, 0, 10);
-//            fill(121, 161, 194);
-//            rect(width/2 + 133, 100, 14, 45);
-//            fill(248, 146, 126);
-//            rect(width/2 + 147, 100, 13, 45, 0, 10, 10, 0);
             //
             strokeWeight(0);
             fill(221, 161, 94);
@@ -304,6 +384,16 @@ void squaresDesign() {
             rect(width / 2 + 80, 170, 160, 25, 5, 5, 5, 5);
             line(width / 2 + 120, 170, width / 2 + 120, 195);
             line(width / 2 + 160, 170, width / 2 + 160, 195);
+            // Language selection width / 2 + 80, 170, 40, 25
+            if ((mouseX > width / 2 + 80) && (mouseX < width / 2 + 120) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+              language = "ES";
+            } else if ((mouseX > width / 2 + 120) && (mouseX < width / 2  + 160) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+              language = "EN";
+            } else if ((mouseX > width / 2 + 160) && (mouseX < width / 2 + 200) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+              language = "IT";
+            } else if ((mouseX > width / 2 + 200) && (mouseX < width / 2 + 240) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+              language = "FR";
+            }
         }
         // Back
         strokeWeight(3);
@@ -311,7 +401,21 @@ void squaresDesign() {
         rect(width - 100, height - 50, 80, 30, 15, 15, 15, 15);
         textSize(16);
         fill(0);
-        text("Back", width - 80, height - 30);
+        switch (backText) {
+          case "Back":
+            backX = width - 80;
+            break;
+          case "Atrás":
+            backX = width - 82;
+            break;
+          case "Revenir":
+            backX = width - 90;
+            break;
+          case "Indietro":          
+            backX = width - 90;
+            break;
+        }
+        text(backText, backX, height - 30);
         if ((mouseX > width - 100) && (mouseX < width - 20) && (mouseY > height - 50) && (mouseY < height - 20) && (mousePressed)) {
             game = true;
         }
