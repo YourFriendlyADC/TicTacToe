@@ -1,0 +1,18 @@
+Theme 2
+BG
+241, 250, 238
+Botones
+168, 218, 220
+Tablero
+255, 217, 125
+Hover
+255, 127, 150
+
+Theme 1
+BG
+254, 250, 224
+Botones
+221, 161, 94
+Tablero
+96, 108, 56
+Hover
