@@ -1,4 +1,3 @@
-//Settings
 void settingsMenu() {
   // Title
   fill(0);
@@ -17,8 +16,11 @@ void settingsMenu() {
     case "Paramètres":
       settingsX = width / 2 - 72;
       break;
+    case "Konfigurationen":
+      settingsX = width / 2 - 105;
+      break;
   }
-  text(settingsText, settingsX, 30, 180, 40);
+  text(settingsText, settingsX, 30, 230, 40);
   if (theme == 1) {
     fill(221, 161, 94);
   } else {
@@ -39,6 +41,7 @@ void settingsMenu() {
   switch (themeText) {
     case "Theme":
     case "Thème":
+    case "Thema":
       themeX = width / 2 - 35;
       break;
     case "Tema":
@@ -55,6 +58,9 @@ void settingsMenu() {
     case "Langue":
       lgX = width / 2 - 35;
       break;
+    case "Sprache":
+      lgX = width / 2 - 42;
+      break;
   }
   text(lgText, lgX, 175, 120, 40);
   switch (exitText) {
@@ -68,8 +74,11 @@ void settingsMenu() {
     case "Sortie":
       exitX = width / 2 - 30;
       break;
+    case "Verlassen":
+      exitX = width / 2 - 48;
+      break;
   }
-  text(exitText, exitX, 235, 70, 40);
+  text(exitText, exitX, 235, 110, 40);
   textSize(16);
   text("Created by: YourFriendlyADC", 220, 480, 420, 30);
   // Theme
@@ -111,7 +120,7 @@ void settingsMenu() {
   // Language
   if ((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 160) && (mouseY < 205) && (mousePressed)) {
     lgBoard = true;
-  } else if (!((mouseX > width / 2 - 70) && (mouseX < width / 2 + 240) && (mouseY > 160) && (mouseY < 205))) {
+  } else if (!((mouseX > width / 2 - 70) && (mouseX < width / 2 + 280) && (mouseY > 160) && (mouseY < 205))) {
     lgBoard = false;
   }
   if (lgBoard) {
@@ -159,16 +168,23 @@ void settingsMenu() {
     rect(width / 2 + 213, 170, 14, 25);
     fill(240, 40, 40);
     rect(width / 2 + 227, 170, 13, 25, 0, 5, 5, 0);
+    // DE
+    fill(10, 10, 10);
+    rect(width / 2 + 240, 170, 40, 8, 0, 5, 0, 0);
+    fill(220, 30, 30);
+    rect(width / 2 + 240, 178, 40, 9);
+    fill(220, 220, 30);
+    rect(width / 2 + 240, 187, 40, 8, 0, 0, 5, 0);
     //
     strokeWeight(0);
     fill(221, 161, 94);
     strokeWeight(3);
     noFill();
-    line(width / 2 + 70, 182, width / 2 + 80, 182);
-    rect(width / 2 + 80, 170, 160, 25, 5, 5, 5, 5);
+    rect(width / 2 + 80, 170, 200, 25, 5, 5, 5, 5);
+    line(width / 2 + 70, 182, width / 2 + 80, 182);    
     line(width / 2 + 120, 170, width / 2 + 120, 195);
     line(width / 2 + 160, 170, width / 2 + 160, 195);
-    // Language selection width / 2 + 80, 170, 40, 25
+    // Language Selection
     if ((mouseX > width / 2 + 80) && (mouseX < width / 2 + 120) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
       language = "ES";
     } else if ((mouseX > width / 2 + 120) && (mouseX < width / 2  + 160) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
@@ -177,6 +193,8 @@ void settingsMenu() {
       language = "IT";
     } else if ((mouseX > width / 2 + 200) && (mouseX < width / 2 + 240) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
       language = "FR";
+    } else if ((mouseX > width / 2 + 240) && (mouseX < width / 2 + 280) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+      language = "DE";
     }
   }
   // Back
@@ -201,6 +219,9 @@ void settingsMenu() {
       break;
     case "Indietro":          
       backX = width - 92;
+      break;
+    case "Zurück":
+      backX = width - 86;
       break;
   }
   text(backText, backX, height - 30);

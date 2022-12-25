@@ -1,61 +1,68 @@
 PFont font;
-PImage settings, noVol, vol;
-String actualSign, language = "EN", restartText, settingsText, themeText, lgText, exitText, backText;
-boolean c[] = {false, false, false, false, false, false, false, false, false}, isEnd = false;
-boolean turn[] = {false, false, false, false, false, false, false, false, false}; // false x, true o
-boolean game = true, volume = true, themeBoard = false, lgBoard = false, signX = true, signO = false;
-int i = 0, restartX, settingsX, themeX, lgX, exitX, backX, theme = 2, actualTurnI = -1, actualTurnP = -1;
-    
+PImage settings, noVol, vol, icon, reset;
+boolean game = true, volume = true, themeBoard = false, lgBoard = false, ended = false;
+String language = "EN", settingsText, themeText, lgText, exitText, backText;
+int boxes[] = new int[9], player = 1, i = 0, restartX, settingsX, themeX, lgX, exitX, backX, theme = 2;
+
 void setup() {
   size(650, 500);
   settings = loadImage("images/settings.png");
   noVol = loadImage("images/noVol.png");
   vol = loadImage("images/vol.png");
   font = loadFont("BookmanOldStyle-Bold-20.vlw");
-  //photo = loadImage("images/owl.png");        
-  //surface.setIcon(icon);
+  icon = loadImage("images/icon.png");
+  reset = loadImage("images/reset.png");
+  surface.setIcon(icon);
   textFont(font);
 }
 
-void draw() {
+void draw() {  
+  // Theme setting
   if (theme == 1) {
     background(254, 250, 224);
   } else {
     background(241, 250, 238);
   }
+  
+  // Language setting
   if (language == "EN") {
-    restartText = "Restart";
     settingsText = "Settings";
     themeText = "Theme";
     lgText = "Language";
     exitText = "Exit";
     backText = "Back";
   } else if (language == "ES") {
-    restartText = "Reiniciar";
     settingsText = "Ajustes";
     themeText = "Tema";
     lgText = "Idioma";
     exitText = "Salir";
     backText = "Atrás";
   } else if (language == "IT") {
-    restartText = "Ricominciare";
     settingsText = "Impostazioni";
     themeText = "Tema";
     lgText = "Lingua";
     exitText = "Uscita";
     backText = "Indietro";
   } else if (language == "FR") {
-    restartText = "Recommencer";
     settingsText = "Paramètres";
     themeText = "Thème";
     lgText = "Langue";
     exitText = "Sortie";
     backText = "Revenir";
+  } else if (language == "DE") {
+    settingsText = "Konfigurationen";
+    themeText = "Thema";
+    lgText = "Sprache";
+    exitText = "Verlassen";
+    backText = "Zurück";
   }
+  
+  // Tab Setting
   if (game) {
-    squaresDesign();
-    board();
-    restart();
+    drawBoard();
+    if (mousePressed && !ended) {
+      setTrain(player);
+    }
   } else {
     settingsMenu();
   }
