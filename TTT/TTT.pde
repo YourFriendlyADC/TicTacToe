@@ -1,18 +1,25 @@
 PFont font;
-PImage settings, noVol, vol, icon, reset;
-boolean game = true, volume = true, themeBoard = false, lgBoard = false, ended = false;
-String language = "EN", settingsText, themeText, lgText, exitText, backText, blueText, redText, winnerText, drawText, pressResetText, turnText;
-int boxes[] = new int[9], player = 1, i = 0, restartX, settingsX, themeX, lgX, exitX, backX, turnX, blueX, redX, winnerBX, winnerRX, theme = 2;
+PImage settings, noVol, vol, icon, reset, back, exit;
+boolean board = true, volume = true, themeBoard = false, lgBoard = false, ended = false, twoPlayers = false;
+String language = "EN", mode = "P1 vs. IA";
+String settingsText, themeText, lgText, exitText, backText, turnText, blueText, redText, winnerText, drawText;
+int restartX, settingsX, themeX, lgX, exitX, backX, turnX, blueX, redX, winnerBX, winnerRX, drawX;
+int boxes[] = new int[9], player = 1, i = 0, theme = 2, redVictories = 0, blueVictories = 0, random;
 
 void setup() {
-  size(650, 500);
+  // Screen Size
+  size(500, 580);
+  // Images
   settings = loadImage("images/settings.png");
   noVol = loadImage("images/noVol.png");
   vol = loadImage("images/vol.png");  
   icon = loadImage("images/icon.png");
-  reset = loadImage("images/reset.png");
-  font = loadFont("BookmanOldStyle-Bold-20.vlw");
+  reset = loadImage("images/reset.png");  
+  back = loadImage("images/back.png");
+  exit = loadImage("images/exit.png");
   surface.setIcon(icon);
+  // Font
+  font = loadFont("BookmanOldStyle-Bold-20.vlw");
   textFont(font);
 }
 
@@ -36,7 +43,6 @@ void draw() {
     redText = "Red";
     winnerText = "wins";
     drawText = "Draw...";
-    pressResetText = "Press Restart";
   } else if (language == "ES") {
     settingsText = "Ajustes";
     themeText = "Tema";
@@ -48,7 +54,6 @@ void draw() {
     redText = "Rojo";
     winnerText = "gana";
     drawText = "Empate...";
-    pressResetText = "Presiona Reiniciar";
   } else if (language == "IT") {
     settingsText = "Impostazioni";
     themeText = "Tema";
@@ -60,7 +65,6 @@ void draw() {
     redText = "Rosso";
     winnerText = "vince";
     drawText = "Pareggio...";
-    pressResetText = "Premere Riavvia";
   } else if (language == "FR") {
     settingsText = "Paramètres";
     themeText = "Thème";
@@ -72,7 +76,6 @@ void draw() {
     redText = "Rouge";
     winnerText = "gagne";
     drawText = "Match nul...";
-    pressResetText = "Appuyez sur Redémarrer";
   } else if (language == "DE") {
     settingsText = "Konfigurationen";
     themeText = "Thema";
@@ -84,11 +87,9 @@ void draw() {
     redText = "Rot";
     winnerText = "gewinnt";
     drawText = "Binden...";
-    pressResetText = "Drücken Sie Neu starten";
   }
-
   // Tab Setting
-  if (game) {
+  if (board) {
     drawBoard();
     if (mousePressed && !ended) {
       setTrain(player);

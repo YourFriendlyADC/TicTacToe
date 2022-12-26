@@ -21,22 +21,22 @@ void settingsMenu() {
       break;
   }
   text(settingsText, settingsX, 30, 230, 40);
+  // Buttons
   if (theme == 1) {
     fill(221, 161, 94);
   } else {
     fill(168, 218, 220);
   }  
+  rect(width / 2 - 70, 140, 140, 45, 25, 25, 25, 25);
+  rect(width / 2 - 70, 200, 140, 45, 25, 25, 25, 25);  
   ellipse(width / 2, 320, 50, 50);
+  // Texts
+  fill(0);
   if (volume) {
     image(vol, width / 2 - 18, 302);
   } else {
     image(noVol, width / 2 - 18, 302);
   }
-  rect(width / 2 - 70, 100, 140, 45, 25, 25, 25, 25);
-  rect(width / 2 - 70, 160, 140, 45, 25, 25, 25, 25);
-  rect(width / 2 - 70, 220, 140, 45, 25, 25, 25, 25);
-  // Texts
-  fill(0);
   textSize(20);
   switch (themeText) {
     case "Theme":
@@ -48,7 +48,7 @@ void settingsMenu() {
       themeX = width / 2 - 28;
       break;
   }
-  text(themeText, themeX, 115, 100, 40);
+  text(themeText, themeX, 155, 100, 40);
   switch (lgText) {
     case "Language":        
       lgX = width / 2 - 48;
@@ -62,65 +62,49 @@ void settingsMenu() {
       lgX = width / 2 - 42;
       break;
   }
-  text(lgText, lgX, 175, 120, 40);
-  switch (exitText) {
-    case "Exit":
-      exitX = width / 2 - 22;
-      break;
-    case "Salir":
-      exitX = width / 2 - 24;
-      break;
-    case "Uscita":
-    case "Sortie":
-      exitX = width / 2 - 30;
-      break;
-    case "Verlassen":
-      exitX = width / 2 - 48;
-      break;
-  }
-  text(exitText, exitX, 235, 110, 40);
+  text(lgText, lgX, 215, 120, 40);
   textSize(16);
-  text("Created by: YourFriendlyADC", 220, 480, 420, 30);
+  text("Developed by: YourFriendlyADC", width / 2 - 140, height - 10);
   // Theme
-  if ((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 100) && (mouseY < 145) && (mousePressed)) {
+  if ((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 95) && (mouseY < 185) && (mousePressed)) {
     themeBoard = true;
-  } else if (!((mouseX > width / 2 - 70) && (mouseX < width / 2 + 160) && (mouseY > 100) && (mouseY < 145))) {
+  } else if (!((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 95) && (mouseY < 185))) {
     themeBoard = false;
   }
   if (themeBoard) {
     strokeWeight(2);
     // Theme 1
     fill(254, 250, 224);
-    rect(width / 2 + 80, 105, 13, 35, 10, 0, 0, 10);
+    rect(width / 2 - 40, 95, 13, 30, 10, 0, 0, 10);
     fill(221, 161, 94);
-    rect(width / 2 + 93, 105, 14, 35);
+    rect(width / 2 - 27, 95, 14, 30);
     fill(186, 228, 146);
-    rect(width / 2 + 107, 105, 13, 35, 0, 10, 10, 0);
+    rect(width / 2 - 13, 95, 13, 30, 0, 10, 10, 0);
     // Theme 2
     fill(241, 250, 238);
-    rect(width / 2 + 120, 105, 13, 35, 10, 0, 0, 10);
+    rect(width / 2, 95, 13, 30, 10, 0, 0, 10);
     fill(69, 123, 157);
-    rect(width / 2 + 133, 105, 14, 35);
+    rect(width / 2 + 13, 95, 14, 30);
     fill(255, 217, 125);
-    rect(width / 2 + 147, 105, 13, 35, 0, 10, 10, 0);
+    rect(width / 2 + 27, 95, 13, 30, 0, 10, 10, 0);
     //
     strokeWeight(0);
     fill(221, 161, 94);
     strokeWeight(3);
-    noFill();
-    line(width / 2 + 70, 122, width / 2 + 80, 122);
-    rect(width / 2 + 80, 105, 40, 35, 10, 10, 10, 10);
-    rect(width / 2 + 120, 105, 40, 35, 10, 10, 10, 10);
-    if ((mouseX > width / 2 + 80) && (mouseX < width / 2 + 120) && (mouseY > 105) && (mouseY < 140) && (mousePressed)) {
+    noFill();    
+    line(width / 2, 95, width / 2, 140);
+    rect(width / 2 - 40, 95, 80, 30, 10, 10, 10, 10);
+    //rect(width / 2, 95, 40, 30, 10, 10, 10, 10);
+    if ((mouseX > width / 2 - 40) && (mouseX < width / 2) && (mouseY > 95) && (mouseY < 125) && (mousePressed)) {
       theme = 1;
-    } else if ((mouseX > width / 2 + 120) && (mouseX < width / 2 + 160) && (mouseY > 105) && (mouseY < 140) && (mousePressed)) {
+    } else if ((mouseX > width / 2) && (mouseX < width / 2 + 40) && (mouseY > 95) && (mouseY < 125) && (mousePressed)) {
       theme = 2;
     }
   }
   // Language
-  if ((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 160) && (mouseY < 205) && (mousePressed)) {
+  if ((mouseX > width / 2 - 100) && (mouseX < width / 2 + 100) && (mouseY > 200) && (mouseY < 280) && (mousePressed)) {
     lgBoard = true;
-  } else if (!((mouseX > width / 2 - 70) && (mouseX < width / 2 + 280) && (mouseY > 160) && (mouseY < 205))) {
+  } else if (!((mouseX > width / 2 - 100) && (mouseX < width / 2 + 100) && (mouseY > 200) && (mouseY < 280))) {
     lgBoard = false;
   }
   if (lgBoard) {
@@ -128,72 +112,72 @@ void settingsMenu() {
     strokeWeight(2);
     // ES
     fill(220, 30, 30);
-    rect(width / 2 + 80, 170, 40, 25, 5, 5, 5, 5);
+    rect(width / 2 - 100, 255, 40, 25, 5, 5, 5, 5);
     fill(220, 220, 30);
-    rect(width / 2 + 80, 177, 40, 11);
+    rect(width / 2 - 100, 262, 40, 11);
     // EN
     fill(50, 50, 210);
-    rect(width / 2 + 120, 170, 40, 25, 5, 5, 5, 5);
+    rect(width / 2 - 60, 255, 40, 25, 5, 5, 5, 5);
     fill(255);
-    rect(width / 2 + 120, 178, 40, 8);
-    rect(width / 2 + 136, 170, 8, 25);
+    rect(width / 2 - 60, 264, 40, 8);
+    rect(width / 2 - 44, 255, 8, 25);
     stroke(255);
-    strokeWeight(4);
-    line(width / 2 + 120, 170, width / 2 + 160, 195);
-    line(width / 2 + 120, 195, width / 2 + 160, 170);
+    strokeWeight(4); 
+    line(width / 2 - 60, 255, width / 2 - 20, 280);
+    line(width / 2 - 60, 280, width / 2 - 20, 255);
     stroke(0);
     strokeWeight(0);
     fill(220, 50, 50);
-    rect(width / 2 + 139, 170, 3, 25);
-    rect(width / 2 + 120, 181, 40, 3);
+    rect(width / 2 - 60, 267, 40, 3);
+    rect(width / 2 - 41, 255, 3, 25);    
     stroke(220, 50, 50);
     strokeWeight(2);
-    line(width / 2 + 120, 170, width / 2 + 160, 195);
-    line(width / 2 + 120, 195, width / 2 + 160, 170);
+    line(width / 2 - 60, 255, width / 2 - 20, 280);
+    line(width / 2 - 60, 280, width / 2 - 20, 255);
     // IT
     stroke(0);
     strokeWeight(2);
     fill(70, 200, 70);
-    rect(width / 2 + 160, 170, 13, 25, 5, 0, 0, 5);
+    rect(width / 2 - 20, 255, 13, 25, 5, 0, 0, 5);
     fill(244);
-    rect(width / 2 + 173, 170, 14, 25);
+    rect(width / 2 - 7, 255, 14, 25);
     fill(240, 40, 40);
-    rect(width / 2 + 187, 170, 13, 25, 0, 5, 5, 5);
+    rect(width / 2 + 7, 255, 13, 25, 0, 5, 5, 0);
     // FR
     stroke(0);
     strokeWeight(2);
     fill(70, 70, 200);
-    rect(width / 2 + 200, 170, 13, 25, 5, 0, 0, 5);
+    rect(width / 2 + 20, 255, 13, 25, 5, 0, 0, 5);
     fill(244);
-    rect(width / 2 + 213, 170, 14, 25);
+    rect(width / 2 + 33, 255, 14, 25);
     fill(240, 40, 40);
-    rect(width / 2 + 227, 170, 13, 25, 0, 5, 5, 0);
+    rect(width / 2 + 47, 255, 13, 25, 0, 5, 5, 0);
     // DE
     fill(10, 10, 10);
-    rect(width / 2 + 240, 170, 40, 8, 0, 5, 0, 0);
+    rect(width / 2 + 60, 255, 40, 8, 0, 5, 0, 0);
     fill(220, 30, 30);
-    rect(width / 2 + 240, 178, 40, 9);
+    rect(width / 2 + 60, 263, 40, 9);
     fill(220, 220, 30);
-    rect(width / 2 + 240, 187, 40, 8, 0, 0, 5, 0);
-    //
+    rect(width / 2 + 60, 272, 40, 8, 0, 0, 5, 0);
+    // Cover
     strokeWeight(0);
     fill(221, 161, 94);
     strokeWeight(3);
     noFill();
-    rect(width / 2 + 80, 170, 200, 25, 5, 5, 5, 5);
-    line(width / 2 + 70, 182, width / 2 + 80, 182);    
-    line(width / 2 + 120, 170, width / 2 + 120, 195);
-    line(width / 2 + 160, 170, width / 2 + 160, 195);
+    rect(width / 2 - 100, 255, 200, 25, 5, 5, 5, 5);
+    line(width / 2, 245, width / 2, 255);
+    line(width / 2 - 60, 255, width / 2 - 60, 278);
+    line(width / 2 - 20, 255, width / 2 - 20, 278);
     // Language Selection
-    if ((mouseX > width / 2 + 80) && (mouseX < width / 2 + 120) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+    if ((mouseX > width / 2 - 100) && (mouseX < width / 2 - 60) && (mouseY > 255) && (mouseY < 280) && (mousePressed)) {
       language = "ES";
-    } else if ((mouseX > width / 2 + 120) && (mouseX < width / 2  + 160) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+    } else if ((mouseX > width / 2 - 60) && (mouseX < width / 2  - 20) && (mouseY > 255) && (mouseY < 280) && (mousePressed)) {
       language = "EN";
-    } else if ((mouseX > width / 2 + 160) && (mouseX < width / 2 + 200) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+    } else if ((mouseX > width / 2 - 20) && (mouseX < width / 2 + 20) && (mouseY > 255) && (mouseY < 280) && (mousePressed)) {
       language = "IT";
-    } else if ((mouseX > width / 2 + 200) && (mouseX < width / 2 + 240) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+    } else if ((mouseX > width / 2 + 20) && (mouseX < width / 2 + 60) && (mouseY > 255) && (mouseY < 280) && (mousePressed)) {
       language = "FR";
-    } else if ((mouseX > width / 2 + 240) && (mouseX < width / 2 + 280) && (mouseY > 170) && (mouseY < 195) && (mousePressed)) {
+    } else if ((mouseX > width / 2 + 60) && (mouseX < width / 2 + 100) && (mouseY > 255) && (mouseY < 280) && (mousePressed)) {
       language = "DE";
     }
   }
@@ -204,34 +188,13 @@ void settingsMenu() {
   } else {
     fill(168, 218, 220);
   }
-  rect(width - 100, height - 50, 80, 30, 15, 15, 15, 15);
+  rect(30, 20, 50, 30, 15, 15, 15, 15);
+  image(back, 41, 23);
   textSize(16);
   fill(0);
-  switch (backText) {
-    case "Back":
-      backX = width - 80;
-      break;
-    case "Atrás":
-      backX = width - 82;
-      break;
-    case "Revenir":
-      backX = width - 90;
-      break;
-    case "Indietro":          
-      backX = width - 92;
-      break;
-    case "Zurück":
-      backX = width - 86;
-      break;
-  }
-  text(backText, backX, height - 30);
-  if ((mouseX > width - 100) && (mouseX < width - 20) && (mouseY > height - 50) && (mouseY < height - 20) && (mousePressed)) {
-    game = true;
-  }
-  // Exit
-  if ((mouseX > width / 2 - 70) && (mouseX < width / 2 + 70) && (mouseY > 220) && (mouseY < 265) && (mousePressed)) {
-    exit();
-  }
+  if ((mouseX > 30) && (mouseX < 80) && (mouseY > 20) && (mouseY < 50) && (mousePressed)) {
+    board = true;
+  }  
   // Sound
   if (((mouseX > width / 2 - 25) && (mouseX < width / 2 + 25) && (mouseY > 295) && (mouseY < 345) && (mousePressed)) && volume) {
     volume = false;
