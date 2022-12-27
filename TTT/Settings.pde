@@ -200,5 +200,5 @@ void settingsMenu() {
     volume = false;
   } else if (((mouseX > width / 2 - 25) && (mouseX < width / 2 + 25) && (mouseY > 295) && (mouseY < 345) && (mousePressed)) && !volume) {
     volume = true;
-  }
+  }  
 }

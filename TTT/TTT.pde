@@ -1,4 +1,8 @@
+import ddf.minim.*;
+
 PFont font;
+Minim minim;
+AudioPlayer audioPlayer;
 PImage settings, noVol, vol, icon, reset, back, exit;
 boolean board = true, volume = true, themeBoard = false, lgBoard = false, ended = false, twoPlayers = false;
 String language = "EN", mode = "P1 vs. IA";
@@ -21,6 +25,9 @@ void setup() {
   // Font
   font = loadFont("BookmanOldStyle-Bold-20.vlw");
   textFont(font);
+  // Sound
+  minim = new Minim(this);
+  audioPlayer = minim.loadFile("sound.wav");
 }
 
 void draw() {
@@ -30,7 +37,12 @@ void draw() {
   } else {
     background(241, 250, 238);
   }
-
+  // Audio
+  if (volume) {
+    audioPlayer.play();
+  } else {
+    audioPlayer.pause();
+  }
   // Language setting
   if (language == "EN") {
     settingsText = "Settings";
